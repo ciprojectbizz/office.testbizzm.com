@@ -50,6 +50,7 @@
 									<th>Form Name</th>
 									<th>Year/Period</th>
 									<th>Date Of Filing</th>
+									<th>Due Date</th>
 									<th>SRN</th>
 									<th>Type of Fee</th>
 									<th>Amount</th>
@@ -69,6 +70,7 @@
 										<td><?= $registrars_companiesRow['form_number']?></td>
 										<td><?= $registrars_companiesRow['year_period']?></td>
 										<td><?= $registrars_companiesRow['date_of_filing']?></td>
+										<td><?= $registrars_companiesRow['statutory_due_date']?></td>
 										<td><?= $registrars_companiesRow['srn']?></td>
 										<td><?php if($registrars_companiesRow['type_ofFee'] == 1){ ?>
 											Normal

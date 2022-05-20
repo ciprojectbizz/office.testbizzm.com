@@ -8,7 +8,7 @@ class Task extends CI_Controller
 		parent:: __construct();
 	}
 
-	public function index()
+	public function view_task()
 	{
 		if($this->session->has_userdata('user')!=false)
 		{
@@ -22,12 +22,25 @@ class Task extends CI_Controller
 			redirect('dashboard');
 		}
 	}
+	public function viewSubTasks()
+	{
+		if($this->session->has_userdata('user')!=false)
+		{
+			$taskId=$this->uri->segment(3);
+			$data['subtasks']=$this->Task->getAllSubTasks($taskId);
+			$this->layout->view('task/subtask',$data);
+		}
+		else
+		{
+			redirect('dashboard');
+		}
+	}
 
 	public function add_task()
 	{
 		if($this->session->has_userdata('user')!=false)
 		{
-			$this->layout->view('task/add-task');
+			$this->layout->view('task/add_task');
 		}
 		else
 		{
@@ -96,25 +109,13 @@ class Task extends CI_Controller
 	
 	public function subTasks()
 	{
-	    if($this->session->has_userdata('user'))
-	    {
-	        if($this->uri->segment(3)!="")
-	        {
-	            $taskId=$this->uri->segment(3);
-	            $data['taskId']=$taskId;
-                $data['subtasks']=$this->Task->getAllSubTasks($taskId);
-	            $this->layout->view('task/subtask',$data);
-	        }
-	        else
-	        {
-	            redirect('dashboard');
-	        }
-	        
-	    }
-	    else
-	    {
-	        redirect('dashboard');
-	    }
+		if ($this->session->has_userdata('user') != false) {
+			$data['tasks'] = $this->Task->getAllTasks();
+			$this->layout->view('task/add_Task_Types', $data);
+		} else {
+			redirect('dashboard');
+		}
+		
 	}
 	
 	public function add_sub_task()
@@ -140,39 +141,26 @@ class Task extends CI_Controller
 	
 	public function post_add_sub_task()
 	{
-	    if($_POST!=NULL)
-	    {
-	        if($this->session->has_userdata('user')!=false)
-	        {
-	            $taskId=$this->input->post('task');
-                if($this->input->post('subtask'))
-                {
-                    foreach($this->input->post('subtask') as $key=>$value)
-                    {
-                        $data=array('name'=>$value,
-                                    'task'=>$taskId,
-                                    'created_by'=>$this->session->userdata('user'),
-                                    'created_at'=>date('Y-m-d H:i:s'),
-                                    'modified_at'=>date('Y-m-d H:i:s'));
-					$clean_data=$this->security->xss_clean($data);
-					$this->Main->insert('sub-tasks',$clean_data);
-                    }
-                    redirect('task/subTasks/'.$taskId);
-                }
-                else
-                {
-                    redirect('task/subTasks/'.$taskId);
-                }
-	        }
-	        else
-	        {
-	            redirect('dashboard');
-	        }
-	    }
-	    else
-	    {
-	        redirect('dashboard');
-	    }
+		$task_name = $this->input->post('task_name');
+		$subTask = $this->input->post('subTask');
+		
+		$total = count($subTask);
+		if($subTask){
+			for($i=0; $i<$total; $i++ ){
+				$data = array( 
+					'task_id'    =>  $task_name, 
+					'name'    =>  $subTask[$i],
+					'created_by'=>$this->session->userdata('user'),
+					'created_at'=>date('Y-m-d H:i:s'),
+                    'modified_at'=>date('Y-m-d H:i:s')
+				);
+				$clean_data=$this->security->xss_clean($data);
+				$insert = $this->Main->insert('sub_tasks',$clean_data);
+			}
+		}
+		if($insert){
+			redirect('project');
+		}
 	}
 	
 	public function superSubTasks()
@@ -342,7 +330,7 @@ class Task extends CI_Controller
 	            $data=array('name'=>$sub_task,
 	                        'modified_at'=>date('Y-m-d H:i:s'));
 	            $clean_data=$this->security->xss_clean($data);
-                $result=$this->Main->update('id',$subTaskId,$data,'sub-tasks');
+                $result=$this->Main->update('id',$subTaskId,$data,'sub_tasks');
                 if($result==true)
                 {
                     redirect('task/subTasks/'.$taskId);

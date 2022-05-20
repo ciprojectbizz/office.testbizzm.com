@@ -7,18 +7,16 @@ class Task_Model extends CI_Model
 {
 	function getAllTasks()
 	{
-		$this->db->select('tasks.*,users.name as employee_name');
+		$this->db->select('tasks.*');
 		$this->db->from('tasks');
-		$this->db->join('users','users.id=tasks.created_by');
 		return $this->db->get()->result_array();
 	}
 	
 	function getAllSubTasks($taskId)
 	{
-	    $this->db->select('sub-tasks.*,users.name as employee_name');
-	    $this->db->from('sub-tasks');
-	    $this->db->join('users','users.id=sub-tasks.created_by');
-	    $this->db->where('sub-tasks.task',$taskId);
+	    $this->db->select('sub_tasks.*');
+	    $this->db->from('sub_tasks');
+	    $this->db->where('sub_tasks.task_id',$taskId);
 	    return $this->db->get()->result_array();
 	}
 	

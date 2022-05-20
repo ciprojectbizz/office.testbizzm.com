@@ -20,7 +20,7 @@
 
             <div class="card" style="border-radius: 15px">
               <div class="card-header">
-                <a href="<?= base_url('task/add_sub_task/'.$taskId)?>"><button class="btn btn-primary" data-toggle="tooltip" title="Add Sub Task"><i class="fa fa-plus"></i></button></a>
+                <?php /*<a href="<?= base_url('task/add_sub_task/'.$taskId)?>"><button class="btn btn-primary" data-toggle="tooltip" title="Add Sub Task"><i class="fa fa-plus"></i></button></a>*/ ?>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -28,16 +28,15 @@
                   <thead style="background-color:#023047; color: #fff">
                   <tr>
                     <th>Sub Task Name</th>
-                    <th>Created By</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($subtasks as $subtask): ?>
+                    <?php foreach($subtasks as $subtaskRow): ?>
                       <tr style="background-color: #fff; color: #000">
-                        <td><?= $subtask['name']?></td>
-                        <td><?= $subtask['employee_name']?></td>
-                        <td><a href="<?= base_url('task/superSubTasks/'.$subtask['id'])?>" class="btn btn-default" style="background-color: #264653; color:#fff" data-toggle="tooltip" title="View Super Sub Task"><i class="fa fa-eye"></i></a> <a href="<?= base_url('task/subTaskEdit/'.$subtask['id'].'/'.$taskId)?>" class="btn btn-default" style="background-color:#3d405b; color: #fff" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a></td>
+                        <td><?= $subtaskRow['name']?></td>
+                        <td><!--<a href="<?= base_url('task/superSubTasks/'.$subtaskRow['id'])?>" class="btn btn-default" style="background-color: #264653; color:#fff" data-toggle="tooltip" title="View Super Sub Task"><i class="fa fa-eye"></i></a> <a href="<?= base_url('task/subTaskEdit/'.$subtask['id'].'/'.$taskId)?>" class="btn btn-default" style="background-color:#3d405b; color: #fff" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>-->
+											</td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

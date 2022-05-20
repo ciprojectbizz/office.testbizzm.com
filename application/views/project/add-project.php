@@ -169,7 +169,7 @@
 
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-       <script type="text/javascript">
+   <script type="text/javascript">
         $(function ()
         {
          
@@ -203,11 +203,7 @@
          
 
         });
-    </script>
-    
-
-
-<script type="text/javascript">
+   
 function getSubTask() {
         $(".class_subtask").remove();
         $(".class_super_subtask").remove();
@@ -243,8 +239,6 @@ function getSubTask() {
 	});
 }
 
-</script>
-<script type="text/javascript">
 function getSuperSubTask() {
         $(".class_super_subtask").remove();
         var str='';
@@ -280,6 +274,5 @@ function getSuperSubTask() {
 }
 </script>
 
-</script>
 
 

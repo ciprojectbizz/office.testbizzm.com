@@ -19,7 +19,8 @@
 
             <div class="card" style="border-radius: 15px">
               <div class="card-header">
-                
+							<a href="<?=base_url('task/subTasks')?>" target="_blank"><button class="btn btn-primary" data-toggle="tooltip" title="Add Project">Add Task</button></a>
+							<!--<a href="<?=base_url('task/subTasks')?>" target="_blank"><button class="btn btn-primary" data-toggle="tooltip" title="Add Project">Add Task Types</button></a>-->
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -27,18 +28,14 @@
                   <thead style="background-color:#023047; color: #fff">
                   <tr>
                     <th>Task</th>
-                    <th>Assign To</th>
-                    <th>Created By</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php foreach($tasks as $task): ?>
                       <tr  style="background-color: #fff; color: #000">
-                        <td><i class="fa fa-tasks"></i> <?= $task['task_name']?></td>
-                        <td><i class="fa fa-user"></i> <?= $task['assign_to_name']?></td>
-                        <td><?= $task['created_by_name']?></td>
-                        <td><a href="<?= base_url('project/sub_tasks/'.$task['task'].'/'.$project_id)?>" class="btn btn-default" style="background-color: #264653; color:#fff" data-toggle="tooltip" title="View Sub Task"><i class="fa fa-eye"></i></a>  <a href="<?= base_url('project/assign_tasks/'.$task['id'].'/'.$project_id)?>" class="btn btn-default" style="background-color:#3d405b; color: #fff" data-toggle="tooltip" title="Asign Task"><i class="fas fa-tasks"></i> </i></a></td>
+                        <td><i class="fa fa-tasks"></i> <?= $task['name']?></td>
+                        <td><!--<a href="<?= base_url('project/sub_tasks/'.$task['id'].'/'.$project_id)?>" class="btn btn-default" style="background-color: #264653; color:#fff" data-toggle="tooltip" title="View Sub Task"><i class="fa fa-eye"></i></a>  <a href="<?= base_url('project/assign_tasks/'.$task['id'].'/'.$project_id)?>" class="btn btn-default" style="background-color:#3d405b; color: #fff" data-toggle="tooltip" title="Asign Task"><i class="fas fa-tasks"></i> </i></a>--></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

@@ -20,6 +20,7 @@
             <div class="card" style="border-radius: 15px">
               <div class="card-header">
                 <a href="<?=base_url('project/add_project')?>" target="_blank"><button class="btn btn-primary" data-toggle="tooltip" title="Add Project"><i class="fa fa-plus"></i></button></a>
+				<a href="<?=base_url('task/view_task')?>" target="_blank"><button class="btn btn-primary" data-toggle="tooltip" title="View Project">View Task</button></a>
               </div>
               <!-- /.card-header -->
 							

@@ -79,7 +79,7 @@
                   if (o.result == 1)
                     {   
                        
-                        window.location.assign('<?= base_url();?>task');
+                        window.location.assign('<?= base_url();?>task/view_task');
                        
                     }
                   else if (o.result == 0)
